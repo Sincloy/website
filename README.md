@@ -1,60 +1,126 @@
-# Astro Starter Kit: Blog
+# Sincloy Games Official Website
 
-![Astro Template Preview](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+This is the official website for Sincloy Games, built with the Astro framework. The website showcases our games, team, and development progress, providing a window into our studio for players and media.
 
-<!-- dash-content-start -->
+## Tech Stack
 
-Create a blog with Astro and deploy it on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
+- [Astro](https://astro.build/) - Website framework
+- [Cloudflare Workers](https://workers.cloudflare.com/) - Deployment and hosting
 
-Features:
+## Project Structure
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-<!-- dash-content-end -->
-
-## Getting Started
-
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
-
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/lively-cloud-e687
+```
+sincloy-website/
+├── public/             # Static assets (images, fonts, etc.)
+├── src/
+│   ├── components/     # Reusable components
+│   ├── content/        # Blog and other content
+│   ├── layouts/        # Page layouts
+│   ├── pages/          # Website pages
+│   └── styles/         # Global styles
+├── astro.config.mjs    # Astro configuration
+└── package.json        # Project dependencies
 ```
 
-A live public deployment of this template is available at [https://lively-cloud-e687.templates.workers.dev](https://lively-cloud-e687.templates.workers.dev)
+## Development Guide
 
-## 🚀 Project Structure
+### Local Development
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+```bash
+# Install dependencies
+npm install
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+# Start development server
+npm run dev
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+# Build the website
+npm run build
 
-Any static assets, like images, can be placed in the `public/` directory.
+# Preview the build
+npm run preview
+```
 
-## 🧞 Commands
+### Deployment
 
-All commands are run from the root of the project, from a terminal:
+```bash
+# Build and deploy to Cloudflare
+npm run deploy
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-| `npm run deploy`          | Deploy your production site to Cloudflare        |
+## Content Management
 
-## 👀 Want to learn more?
+### Blog Posts
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Blog posts are stored in the `src/content/blog/` directory using Markdown format. Each post should include the following frontmatter:
 
-## Credit
+```markdown
+---
+title: "Post Title"
+description: "Post description"
+pubDate: "Publication date (e.g., Mar 15 2025)"
+heroImage: "/image-path.jpg"
+---
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Post content...
+```
+
+### Game Content
+
+Game-related content is stored in the `src/content/games/` directory using Markdown format.
+
+### Images and Media
+
+All static media files should be placed in the `public/` directory.
+
+## Website Content Maintenance Guide
+
+### Home Page
+
+The home page should include:
+- Studio introduction
+- Latest game showcase
+- Recent news/blog posts
+- Development progress updates
+
+### Games Pages
+
+Each game should have a dedicated page including:
+- Game overview
+- Features and highlights
+- Screenshots and videos
+- Development progress
+- Technical specifications
+- Download/purchase links (if applicable)
+
+### Team Page
+
+The team page should include:
+- Team introduction
+- Member profiles and roles
+- Studio culture and values
+
+### Blog
+
+The blog should be regularly updated with:
+- Development logs
+- Game design insights
+- Technical articles
+- Team updates
+- Industry perspectives
+
+### Media Resources
+
+The media resources page should provide:
+- High-resolution game screenshots
+- Game logos and artwork
+- Press releases
+- Contact information
+
+## Contact
+
+- Email: contact@sincloy.com
+- Twitter: [@Sincloy](https://x.com/Sincloy)
+
+## License
+
+© Sincloy Games. All rights reserved.

@@ -1,0 +1,310 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Team | ${SITE_TITLE}`} description="Meet the passionate team behind Sincloy Games" />
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			.page-title {
+				margin-bottom: 0.5em;
+			}
+			.page-subtitle {
+				margin-top: 0;
+				color: rgb(var(--gray));
+				font-weight: normal;
+				font-size: 1.2em;
+				margin-bottom: 2em;
+			}
+			.section {
+				margin: 3em 0;
+			}
+			.section-title {
+				font-size: 1.8em;
+				margin-bottom: 1em;
+				color: rgb(var(--black));
+			}
+			.team-story {
+				margin-bottom: 3em;
+				line-height: 1.6;
+			}
+			.leadership-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 2em;
+				margin: 2em 0;
+			}
+			.team-member {
+				background-color: white;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			}
+			.member-photo {
+				width: 100%;
+				height: 300px;
+				object-fit: cover;
+				background-color: #f6f6f6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #888;
+				font-style: italic;
+			}
+			.member-info {
+				padding: 1.5em;
+			}
+			.member-name {
+				margin: 0 0 0.2em 0;
+				font-size: 1.3em;
+			}
+			.member-role {
+				margin: 0 0 1em 0;
+				color: rgb(var(--accent));
+				font-weight: 500;
+			}
+			.member-bio {
+				margin: 0;
+				color: rgb(var(--gray-dark));
+				line-height: 1.5;
+			}
+			.team-photo {
+				width: 100%;
+				height: 400px;
+				object-fit: cover;
+				border-radius: 12px;
+				margin: 2em 0;
+				background-color: #f6f6f6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #888;
+				font-style: italic;
+			}
+			.values-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+				gap: 1.5em;
+				margin: 2em 0;
+			}
+			.value-card {
+				background-color: #f9f9f9;
+				border-radius: 8px;
+				padding: 1.5em;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			}
+			.value-title {
+				font-weight: bold;
+				margin-bottom: 0.5em;
+				color: rgb(var(--accent));
+				font-size: 1.2em;
+			}
+			.value-description {
+				margin: 0;
+				color: rgb(var(--gray-dark));
+				line-height: 1.5;
+			}
+			.careers-section {
+				background-color: #f9f9f9;
+				border-radius: 12px;
+				padding: 2em;
+				margin: 3em 0;
+				text-align: center;
+			}
+			.careers-title {
+				margin-top: 0;
+			}
+			.careers-description {
+				max-width: 700px;
+				margin: 1em auto;
+				line-height: 1.6;
+			}
+			.cta-button {
+				display: inline-block;
+				background-color: rgb(var(--accent));
+				color: white;
+				padding: 0.8em 1.5em;
+				border-radius: 4px;
+				text-decoration: none;
+				font-weight: bold;
+				margin-top: 1em;
+			}
+			.cta-button:hover {
+				background-color: rgb(var(--accent-dark, var(--accent)));
+			}
+			.email-link {
+				color: rgb(var(--accent));
+				text-decoration: none;
+				font-weight: 500;
+			}
+			.email-link:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title">Meet the Team</h1>
+			<h2 class="page-subtitle">The passionate creators behind Sincloy Games</h2>
+
+			<div class="section team-story">
+				<h2 class="section-title">Our Story</h2>
+				<p>
+					Sincloy Games was founded in 2024 by a group of industry veterans who shared a vision for creating 
+					innovative, player-focused games that push the boundaries of interactive storytelling. 
+					What began as a small team working remotely has grown into a collaborative studio united by 
+					our passion for crafting memorable gaming experiences.
+				</p>
+				<p>
+					Our team brings together diverse talents from across the gaming industry, with experience 
+					spanning AAA studios, indie development, and other creative fields. This diversity of 
+					backgrounds and perspectives is one of our greatest strengths, allowing us to approach 
+					game development with fresh ideas and unique solutions.
+				</p>
+			</div>
+
+			<div class="section">
+				<h2 class="section-title">Leadership</h2>
+				<div class="leadership-grid">
+					<div class="team-member">
+						<div class="member-photo">[Photo: Alex Chen]</div>
+						<div class="member-info">
+							<h3 class="member-name">Alex Chen</h3>
+							<p class="member-role">Creative Director & Co-Founder</p>
+							<p class="member-bio">
+								With over 15 years of experience in game design, Alex leads our creative vision and narrative direction. 
+								Previously worked at Bioware and Obsidian Entertainment on acclaimed RPG titles.
+							</p>
+						</div>
+					</div>
+
+					<div class="team-member">
+						<div class="member-photo">[Photo: Maya Rodriguez]</div>
+						<div class="member-info">
+							<h3 class="member-name">Maya Rodriguez</h3>
+							<p class="member-role">Technical Director & Co-Founder</p>
+							<p class="member-bio">
+								Maya oversees all technical aspects of our projects, from engine development to optimization. 
+								Her background includes senior engineering roles at Ubisoft and indie studios.
+							</p>
+						</div>
+					</div>
+
+					<div class="team-member">
+						<div class="member-photo">[Photo: James Wilson]</div>
+						<div class="member-info">
+							<h3 class="member-name">James Wilson</h3>
+							<p class="member-role">Art Director</p>
+							<p class="member-bio">
+								James brings worlds to life through his distinctive visual style and artistic leadership. 
+								His portfolio includes work on acclaimed titles from Naughty Dog and independent projects.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="section">
+				<h2 class="section-title">Our Team</h2>
+				<p>
+					Beyond our leadership, Sincloy Games is made up of talented developers, artists, designers, 
+					writers, and producers who collaborate to bring our games to life.
+				</p>
+				<div class="team-photo">[Team group photo: The Sincloy Games team in their creative workspace]</div>
+				<p>
+					Our team currently consists of 12 full-time members working across various disciplines:
+				</p>
+				<ul>
+					<li>Game Design</li>
+					<li>Programming</li>
+					<li>Art & Animation</li>
+					<li>Narrative & Writing</li>
+					<li>Audio Design</li>
+					<li>Production & Management</li>
+				</ul>
+				<p>
+					We also collaborate with a network of talented freelancers and specialists who help us 
+					bring specific expertise to our projects when needed.
+				</p>
+			</div>
+
+			<div class="section">
+				<h2 class="section-title">Studio Culture</h2>
+				<p>
+					At Sincloy Games, our culture is built around creativity, collaboration, and a healthy work-life balance. 
+					We believe that the best games are made by teams who are passionate, well-rested, and empowered to contribute their unique perspectives.
+				</p>
+				
+				<div class="values-grid">
+					<div class="value-card">
+						<h3 class="value-title">Creative Freedom</h3>
+						<p class="value-description">
+							We encourage experimentation and value fresh ideas from everyone on the team, 
+							regardless of role or seniority. Some of our best game features have come from 
+							unexpected sources and spontaneous brainstorming sessions.
+						</p>
+					</div>
+					
+					<div class="value-card">
+						<h3 class="value-title">Sustainable Development</h3>
+						<p class="value-description">
+							We're committed to avoiding crunch and maintaining a healthy work-life balance. 
+							We believe that sustainable development practices lead to better games and happier, 
+							more productive team members.
+						</p>
+					</div>
+					
+					<div class="value-card">
+						<h3 class="value-title">Inclusive Environment</h3>
+						<p class="value-description">
+							We strive to create an inclusive workplace where everyone feels welcome and valued. 
+							Diversity in our team leads to diversity in our thinking, which ultimately results in 
+							more innovative and accessible games.
+						</p>
+					</div>
+					
+					<div class="value-card">
+						<h3 class="value-title">Continuous Learning</h3>
+						<p class="value-description">
+							The games industry is constantly evolving, and we're committed to growing with it. 
+							We encourage ongoing education, skill development, and knowledge sharing among our team.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="careers-section">
+				<h2 class="careers-title">Join Our Team</h2>
+				<p class="careers-description">
+					We're always looking for passionate individuals to join our team. If you're excited about creating 
+					innovative games and want to be part of a collaborative, creative environment, we'd love to hear from you.
+				</p>
+				<p>
+					While we don't have specific openings listed at the moment, we're always interested in connecting with talented:
+				</p>
+				<ul style="display: inline-block; text-align: left;">
+					<li>Game Programmers</li>
+					<li>3D Artists</li>
+					<li>Game Designers</li>
+					<li>Narrative Designers</li>
+					<li>UI/UX Designers</li>
+				</ul>
+				<p>
+					Send your portfolio and resume to <a href="mailto:careers@sincloy.com" class="email-link">careers@sincloy.com</a>
+				</p>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

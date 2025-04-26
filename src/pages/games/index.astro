@@ -1,0 +1,198 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Games | ${SITE_TITLE}`} description="Explore our innovative and immersive games" />
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			.page-title {
+				margin-bottom: 1em;
+			}
+			.intro {
+				margin-bottom: 2.5em;
+			}
+			.games-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+				gap: 2em;
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+			}
+			.game-card {
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				background-color: white;
+			}
+			.game-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+			}
+			.game-image {
+				width: 100%;
+				height: 250px;
+				object-fit: cover;
+				background-color: #f6f6f6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #888;
+				font-style: italic;
+			}
+			.game-content {
+				padding: 1.5em;
+			}
+			.game-title {
+				margin: 0 0 0.5em 0;
+				font-size: 1.5em;
+			}
+			.game-description {
+				margin: 0 0 1em 0;
+				color: rgb(var(--gray-dark));
+				line-height: 1.4;
+			}
+			.game-meta {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 1.5em;
+				padding-top: 1em;
+				border-top: 1px solid #eee;
+			}
+			.game-status {
+				font-size: 0.9em;
+				padding: 0.3em 0.8em;
+				border-radius: 4px;
+				background-color: #f0f0f0;
+				color: rgb(var(--gray-dark));
+			}
+			.status-pre-production {
+				background-color: #ffe8cc;
+				color: #995500;
+			}
+			.status-in-development {
+				background-color: #d1f7c4;
+				color: #2b6a00;
+			}
+			.status-released {
+				background-color: #c8e6ff;
+				color: #004080;
+			}
+			.game-link {
+				display: inline-block;
+				padding: 0.5em 1em;
+				background-color: rgb(var(--accent));
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-weight: 500;
+			}
+			.game-link:hover {
+				background-color: rgb(var(--accent-dark, var(--accent)));
+			}
+			.coming-soon {
+				text-align: center;
+				padding: 3em;
+				background-color: #f9f9f9;
+				border-radius: 12px;
+				margin-top: 2em;
+			}
+			.coming-soon h2 {
+				margin-top: 0;
+				color: rgb(var(--gray-dark));
+			}
+			.coming-soon p {
+				color: rgb(var(--gray));
+				max-width: 600px;
+				margin: 1em auto;
+			}
+			.newsletter-link {
+				display: inline-block;
+				margin-top: 1em;
+				color: rgb(var(--accent));
+				text-decoration: none;
+				font-weight: 500;
+			}
+			.newsletter-link:hover {
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title">Our Games</h1>
+			<div class="intro">
+				<p>
+					At Sincloy Games, we're dedicated to creating innovative and immersive gaming experiences 
+					that push the boundaries of interactive storytelling. Explore our current and upcoming projects below.
+				</p>
+			</div>
+
+			<ul class="games-grid">
+				<li class="game-card">
+					<a href="/games/project-nova">
+						<div class="game-image">[Project Nova key art]</div>
+					</a>
+					<div class="game-content">
+						<h2 class="game-title">Project Nova</h2>
+						<p class="game-description">
+							A sci-fi RPG with player-driven narratives set in a distant future where humanity has colonized the stars.
+						</p>
+						<ul>
+							<li>Dynamic narrative system</li>
+							<li>Deep character customization</li>
+							<li>Immersive open world</li>
+						</ul>
+						<div class="game-meta">
+							<span class="game-status status-pre-production">Pre-production</span>
+							<a href="/games/project-nova" class="game-link">Learn More</a>
+						</div>
+					</div>
+				</li>
+
+				<li class="game-card">
+					<div class="game-image">[Untitled Adventure Game concept art]</div>
+					<div class="game-content">
+						<h2 class="game-title">Untitled Adventure Game</h2>
+						<p class="game-description">
+							An atmospheric adventure game exploring themes of discovery and wonder in a mysterious world.
+						</p>
+						<ul>
+							<li>Atmospheric exploration</li>
+							<li>Puzzle-solving mechanics</li>
+							<li>Emotional storytelling</li>
+						</ul>
+						<div class="game-meta">
+							<span class="game-status status-pre-production">Concept Phase</span>
+							<span class="game-link" style="background-color: #ccc;">Coming Soon</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+			<div class="coming-soon">
+				<h2>More Games Coming Soon</h2>
+				<p>
+					Our team is constantly working on new and exciting projects. 
+					Stay tuned for announcements about our upcoming games.
+				</p>
+				<a href="/blog" class="newsletter-link">Follow our blog for updates →</a>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

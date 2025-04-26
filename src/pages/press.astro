@@ -1,0 +1,533 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Press & Media | ${SITE_TITLE}`} description="Media resources and press information for Sincloy Games" />
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			.page-title {
+				margin-bottom: 0.5em;
+			}
+			.page-subtitle {
+				margin-top: 0;
+				color: rgb(var(--gray));
+				font-weight: normal;
+				font-size: 1.2em;
+				margin-bottom: 2em;
+			}
+			.press-section {
+				margin: 3em 0;
+			}
+			.section-title {
+				font-size: 1.8em;
+				margin-bottom: 1em;
+				color: rgb(var(--black));
+				border-bottom: 1px solid #eee;
+				padding-bottom: 0.5em;
+			}
+			.press-intro {
+				line-height: 1.6;
+				margin-bottom: 2em;
+			}
+			.contact-info {
+				background-color: #f9f9f9;
+				border-radius: 8px;
+				padding: 1.5em;
+				margin: 2em 0;
+			}
+			.contact-title {
+				font-weight: 600;
+				margin-bottom: 0.5em;
+				color: rgb(var(--accent));
+			}
+			.email-link {
+				color: rgb(var(--accent));
+				text-decoration: none;
+				font-weight: 500;
+			}
+			.email-link:hover {
+				text-decoration: underline;
+			}
+			.download-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 2em;
+				margin: 2em 0;
+			}
+			.download-card {
+				background-color: white;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			.download-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+			}
+			.download-preview {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+				background-color: #f6f6f6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #888;
+				font-style: italic;
+			}
+			.download-content {
+				padding: 1.5em;
+			}
+			.download-title {
+				margin: 0 0 0.5em 0;
+				font-size: 1.2em;
+			}
+			.download-description {
+				margin: 0 0 1em 0;
+				color: rgb(var(--gray-dark));
+				line-height: 1.4;
+				font-size: 0.9em;
+			}
+			.download-meta {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 1em;
+				padding-top: 1em;
+				border-top: 1px solid #eee;
+				font-size: 0.9em;
+			}
+			.download-format {
+				color: rgb(var(--gray));
+			}
+			.download-link {
+				display: inline-block;
+				padding: 0.5em 1em;
+				background-color: rgb(var(--accent));
+				color: white;
+				text-decoration: none;
+				border-radius: 4px;
+				font-weight: 500;
+			}
+			.download-link:hover {
+				background-color: rgb(var(--accent-dark, var(--accent)));
+			}
+			.press-release {
+				background-color: white;
+				border-radius: 12px;
+				padding: 2em;
+				margin-bottom: 2em;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			}
+			.release-title {
+				margin-top: 0;
+				margin-bottom: 0.5em;
+				font-size: 1.4em;
+			}
+			.release-date {
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+				margin-bottom: 1.5em;
+			}
+			.release-content {
+				line-height: 1.6;
+			}
+			.release-content p {
+				margin-bottom: 1em;
+			}
+			.release-link {
+				display: inline-block;
+				margin-top: 1em;
+				color: rgb(var(--accent));
+				text-decoration: none;
+				font-weight: 500;
+			}
+			.release-link:hover {
+				text-decoration: underline;
+			}
+			.coverage-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 1.5em;
+				margin: 2em 0;
+			}
+			.coverage-item {
+				background-color: white;
+				border-radius: 8px;
+				padding: 1.5em;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			}
+			.coverage-source {
+				font-weight: 600;
+				margin-bottom: 0.5em;
+			}
+			.coverage-title {
+				margin: 0 0 0.5em 0;
+				font-size: 1.1em;
+			}
+			.coverage-date {
+				color: rgb(var(--gray));
+				font-size: 0.8em;
+				margin-bottom: 1em;
+			}
+			.coverage-excerpt {
+				font-style: italic;
+				color: rgb(var(--gray-dark));
+				margin-bottom: 1em;
+				line-height: 1.5;
+			}
+			.coverage-link {
+				display: inline-block;
+				color: rgb(var(--accent));
+				text-decoration: none;
+				font-weight: 500;
+				font-size: 0.9em;
+			}
+			.coverage-link:hover {
+				text-decoration: underline;
+			}
+			.fact-sheet {
+				background-color: #f9f9f9;
+				border-radius: 12px;
+				padding: 2em;
+				margin: 2em 0;
+			}
+			.fact-title {
+				margin-top: 0;
+				margin-bottom: 1.5em;
+				text-align: center;
+				font-size: 1.5em;
+			}
+			.fact-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 1.5em;
+			}
+			.fact-item {
+				margin-bottom: 1.5em;
+			}
+			.fact-label {
+				font-weight: 600;
+				margin-bottom: 0.3em;
+				color: rgb(var(--accent));
+			}
+			.fact-value {
+				margin: 0;
+				line-height: 1.5;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title">Press & Media</h1>
+			<h2 class="page-subtitle">Resources for journalists, content creators, and media professionals</h2>
+
+			<div class="press-intro">
+				<p>
+					Welcome to the Sincloy Games press center. Here you'll find media resources, press releases, 
+					and information about our studio and games. If you need additional materials or have specific 
+					requests, please don't hesitate to contact our press team.
+				</p>
+				
+				<div class="contact-info">
+					<div class="contact-title">Press Contact</div>
+					<p>
+						For press inquiries, interview requests, or additional materials, please contact:
+						<br>
+						<a href="mailto:press@sincloy.com" class="email-link">press@sincloy.com</a>
+					</p>
+				</div>
+			</div>
+
+			<div class="press-section">
+				<h2 class="section-title">Media Kit</h2>
+				<p>
+					Our media kit contains logos, screenshots, artwork, and other assets for use in articles, 
+					videos, and other media coverage. All assets are available in high resolution and various formats.
+				</p>
+				
+				<div class="download-grid">
+					<div class="download-card">
+						<div class="download-preview">[Preview: Sincloy Games Logo Pack]</div>
+						<div class="download-content">
+							<h3 class="download-title">Sincloy Games Logo Pack</h3>
+							<p class="download-description">
+								Studio logos in various formats and resolutions, including transparent PNG and vector files.
+							</p>
+							<div class="download-meta">
+								<span class="download-format">PNG, SVG, EPS | 15MB</span>
+								<a href="#" class="download-link">Download</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="download-card">
+						<div class="download-preview">[Preview: Project Nova Asset Pack]</div>
+						<div class="download-content">
+							<h3 class="download-title">Project Nova Asset Pack</h3>
+							<p class="download-description">
+								Key art, screenshots, and concept art from our sci-fi RPG Project Nova.
+							</p>
+							<div class="download-meta">
+								<span class="download-format">PNG, JPG | 45MB</span>
+								<a href="#" class="download-link">Download</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="download-card">
+						<div class="download-preview">[Preview: Team Photos]</div>
+						<div class="download-content">
+							<h3 class="download-title">Team Photos</h3>
+							<p class="download-description">
+								Professional photos of the Sincloy Games team and leadership for use in articles and features.
+							</p>
+							<div class="download-meta">
+								<span class="download-format">JPG | 25MB</span>
+								<a href="#" class="download-link">Download</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="download-card">
+						<div class="download-preview">[Preview: Complete Press Kit]</div>
+						<div class="download-content">
+							<h3 class="download-title">Complete Press Kit</h3>
+							<p class="download-description">
+								All media assets, fact sheets, and press releases in a single download.
+							</p>
+							<div class="download-meta">
+								<span class="download-format">ZIP | 85MB</span>
+								<a href="#" class="download-link">Download</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="press-section">
+				<h2 class="section-title">Press Releases</h2>
+				
+				<div class="press-release">
+					<h3 class="release-title">Sincloy Games Unveils Project Nova, A New Sci-Fi RPG Experience</h3>
+					<div class="release-date">April 15, 2025</div>
+					<div class="release-content">
+						<p>
+							<strong>SEATTLE, WA</strong> — Independent game development studio Sincloy Games today announced their debut title, 
+							Project Nova, an immersive sci-fi RPG set in a distant future where humanity has colonized the stars.
+						</p>
+						<p>
+							Project Nova features a dynamic narrative system where player choices permanently alter the game world and story, 
+							deep character customization options, and an immersive open world spanning diverse planets, space stations, and 
+							asteroid colonies.
+						</p>
+						<p>
+							"With Project Nova, we're creating a game that puts player agency at the forefront of the experience," 
+							said Alex Chen, Creative Director at Sincloy Games. "Every decision players make will have meaningful 
+							consequences that shape not only their personal story but the entire game world."
+						</p>
+						<p>
+							Currently in pre-production, Project Nova is being developed for PC with potential console releases to follow. 
+							The studio plans to share more details about the game's development through regular updates on their website 
+							and social media channels.
+						</p>
+					</div>
+					<a href="#" class="release-link">Download Full Press Release (PDF)</a>
+				</div>
+				
+				<div class="press-release">
+					<h3 class="release-title">Sincloy Games Announces Studio Formation</h3>
+					<div class="release-date">March 1, 2025</div>
+					<div class="release-content">
+						<p>
+							<strong>SEATTLE, WA</strong> — A new independent game development studio, Sincloy Games, officially launched today. 
+							Founded by industry veterans with experience at companies including Bioware, Obsidian Entertainment, and Ubisoft, 
+							the studio aims to create innovative and immersive gaming experiences that push the boundaries of interactive storytelling.
+						</p>
+						<p>
+							"We're thrilled to announce the formation of Sincloy Games," said Maya Rodriguez, Technical Director and Co-Founder. 
+							"Our team brings together diverse talents from across the gaming industry, united by a shared vision of creating 
+							games that inspire, challenge, and entertain."
+						</p>
+						<p>
+							The studio is currently working on its first project, with details to be announced in the coming months. 
+							Sincloy Games is committed to sustainable development practices and creating an inclusive workplace environment.
+						</p>
+					</div>
+					<a href="#" class="release-link">Download Full Press Release (PDF)</a>
+				</div>
+			</div>
+
+			<div class="press-section">
+				<h2 class="section-title">Media Coverage</h2>
+				<p>
+					Selected coverage of Sincloy Games and our projects from gaming and technology media.
+				</p>
+				
+				<div class="coverage-grid">
+					<div class="coverage-item">
+						<div class="coverage-source">GameDev Insider</div>
+						<h3 class="coverage-title">Sincloy Games: The New Studio to Watch in 2025</h3>
+						<div class="coverage-date">April 20, 2025</div>
+						<p class="coverage-excerpt">
+							"With an impressive roster of talent and an ambitious vision for their debut title, 
+							Sincloy Games is positioning itself as one of the most promising new studios in the indie space."
+						</p>
+						<a href="#" class="coverage-link">Read Full Article →</a>
+					</div>
+					
+					<div class="coverage-item">
+						<div class="coverage-source">RPG World</div>
+						<h3 class="coverage-title">Project Nova Promises a New Take on Player Choice</h3>
+						<div class="coverage-date">April 18, 2025</div>
+						<p class="coverage-excerpt">
+							"The dynamic narrative system in Project Nova could represent a significant evolution in how 
+							player choices affect game worlds, potentially setting a new standard for narrative RPGs."
+						</p>
+						<a href="#" class="coverage-link">Read Full Article →</a>
+					</div>
+					
+					<div class="coverage-item">
+						<div class="coverage-source">Tech & Games Today</div>
+						<h3 class="coverage-title">Industry Veterans Form Sincloy Games with Focus on Sustainable Development</h3>
+						<div class="coverage-date">March 5, 2025</div>
+						<p class="coverage-excerpt">
+							"In an industry often criticized for crunch culture, Sincloy Games is making waves with their 
+							commitment to sustainable development practices and work-life balance."
+						</p>
+						<a href="#" class="coverage-link">Read Full Article →</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="press-section">
+				<h2 class="section-title">Fact Sheet</h2>
+				
+				<div class="fact-sheet">
+					<h3 class="fact-title">Project Nova</h3>
+					
+					<div class="fact-grid">
+						<div class="fact-item">
+							<div class="fact-label">Developer</div>
+							<p class="fact-value">Sincloy Games</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Genre</div>
+							<p class="fact-value">Sci-Fi RPG</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Platforms</div>
+							<p class="fact-value">PC (Steam), with potential console releases to follow</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Release Date</div>
+							<p class="fact-value">TBA</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Key Features</div>
+							<p class="fact-value">
+								- Dynamic narrative system<br>
+								- Deep character customization<br>
+								- Immersive open world<br>
+								- Strategic combat<br>
+								- Meaningful relationships
+							</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Website</div>
+							<p class="fact-value">www.sincloygames.com</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Social Media</div>
+							<p class="fact-value">
+								Twitter: @Sincloy<br>
+								Discord: discord.gg/sincloy
+							</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Press Contact</div>
+							<p class="fact-value">press@sincloy.com</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="fact-sheet">
+					<h3 class="fact-title">Sincloy Games</h3>
+					
+					<div class="fact-grid">
+						<div class="fact-item">
+							<div class="fact-label">Founded</div>
+							<p class="fact-value">2024</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Location</div>
+							<p class="fact-value">Distributed team with core members in North America and Europe</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Team Size</div>
+							<p class="fact-value">12 full-time members</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Leadership</div>
+							<p class="fact-value">
+								- Alex Chen, Creative Director & Co-Founder<br>
+								- Maya Rodriguez, Technical Director & Co-Founder<br>
+								- James Wilson, Art Director
+							</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Current Projects</div>
+							<p class="fact-value">
+								- Project Nova (Sci-Fi RPG)<br>
+								- Untitled Adventure Game (Concept Phase)
+							</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Website</div>
+							<p class="fact-value">www.sincloygames.com</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Social Media</div>
+							<p class="fact-value">
+								Twitter: @Sincloy<br>
+								Discord: discord.gg/sincloy
+							</p>
+						</div>
+						
+						<div class="fact-item">
+							<div class="fact-label">Press Contact</div>
+							<p class="fact-value">press@sincloy.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,233 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Project Nova | ${SITE_TITLE}`} description="A sci-fi RPG with player-driven narratives" />
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			.hero-section {
+				margin-bottom: 2em;
+			}
+			.hero-image {
+				width: 100%;
+				height: 400px;
+				object-fit: cover;
+				border-radius: 12px;
+				margin-bottom: 1.5em;
+				background-color: #f6f6f6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #888;
+				font-style: italic;
+			}
+			.game-title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1;
+			}
+			.game-tagline {
+				margin-top: 0.5em;
+				color: rgb(var(--gray));
+				line-height: 1.4;
+			}
+			.section {
+				margin: 2.5em 0;
+			}
+			.section-title {
+				font-size: 1.5em;
+				margin-bottom: 1em;
+				color: rgb(var(--black));
+			}
+			.feature-list {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+				gap: 1.5em;
+				margin: 0;
+				padding: 0;
+				list-style-type: none;
+			}
+			.feature-item {
+				background-color: #f9f9f9;
+				border-radius: 8px;
+				padding: 1.5em;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			}
+			.feature-title {
+				font-weight: bold;
+				margin-bottom: 0.5em;
+				color: rgb(var(--accent));
+			}
+			.feature-description {
+				margin: 0;
+				color: rgb(var(--gray-dark));
+			}
+			.progress-container {
+				width: 100%;
+				height: 24px;
+				background-color: #f0f0f0;
+				border-radius: 12px;
+				overflow: hidden;
+				margin: 1em 0 2em 0;
+			}
+			.progress-bar {
+				height: 100%;
+				width: 25%;
+				background-color: rgb(var(--accent));
+				border-radius: 12px;
+			}
+			.progress-label {
+				text-align: center;
+				margin-top: 0.5em;
+				font-size: 0.9em;
+				color: rgb(var(--gray));
+			}
+			.screenshot-gallery {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+				gap: 1em;
+				margin: 1.5em 0;
+			}
+			.screenshot {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+				border-radius: 8px;
+				background-color: #f6f6f6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #888;
+				font-style: italic;
+			}
+			.video-container {
+				width: 100%;
+				height: 400px;
+				background-color: #f6f6f6;
+				border-radius: 8px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #888;
+				font-style: italic;
+				margin: 1.5em 0;
+			}
+			.development-list {
+				list-style-type: disc;
+				padding-left: 1.5em;
+				margin: 1em 0;
+			}
+			.cta-button {
+				display: inline-block;
+				background-color: rgb(var(--accent));
+				color: white;
+				padding: 0.8em 1.5em;
+				border-radius: 4px;
+				text-decoration: none;
+				font-weight: bold;
+				margin-top: 1em;
+			}
+			.cta-button:hover {
+				background-color: rgb(var(--accent-dark, var(--accent)));
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-section">
+					<h1 class="game-title">Project Nova</h1>
+					<p class="game-tagline">A sci-fi RPG with player-driven narratives</p>
+					<div class="hero-image">[Concept art showing the main character overlooking a futuristic cityscape]</div>
+				</div>
+
+				<div class="section">
+					<p>
+						Project Nova is an immersive sci-fi RPG set in the distant future where humanity has colonized the stars. 
+						As a newly awakened clone with mysterious abilities, you must navigate a galaxy on the brink of war 
+						while uncovering the truth about your origin.
+					</p>
+				</div>
+
+				<div class="section">
+					<h2 class="section-title">Key Features</h2>
+					<ul class="feature-list">
+						<li class="feature-item">
+							<div class="feature-title">Dynamic Narrative System</div>
+							<p class="feature-description">Your choices permanently alter the game world and story</p>
+						</li>
+						<li class="feature-item">
+							<div class="feature-title">Deep Character Customization</div>
+							<p class="feature-description">Build your character with unique skills, abilities, and cybernetic enhancements</p>
+						</li>
+						<li class="feature-item">
+							<div class="feature-title">Immersive Open World</div>
+							<p class="feature-description">Explore diverse planets, space stations, and asteroid colonies</p>
+						</li>
+						<li class="feature-item">
+							<div class="feature-title">Strategic Combat</div>
+							<p class="feature-description">Engage in tactical real-time combat with pause mechanics</p>
+						</li>
+						<li class="feature-item">
+							<div class="feature-title">Meaningful Relationships</div>
+							<p class="feature-description">Form alliances, rivalries, and romances with complex characters</p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="section">
+					<h2 class="section-title">Development Status</h2>
+					<p>Project Nova is currently in pre-production. Our team is focused on:</p>
+					<ul class="development-list">
+						<li>Finalizing core gameplay systems</li>
+						<li>Creating concept art and world design</li>
+						<li>Developing the narrative framework</li>
+						<li>Building technical prototypes</li>
+					</ul>
+
+					<div class="progress-container">
+						<div class="progress-bar"></div>
+					</div>
+					<div class="progress-label">25% Complete</div>
+				</div>
+
+				<div class="section">
+					<h2 class="section-title">Screenshots & Concept Art</h2>
+					<div class="screenshot-gallery">
+						<div class="screenshot">[Concept art: Main character design]</div>
+						<div class="screenshot">[Concept art: Central planet cityscape]</div>
+						<div class="screenshot">[Concept art: Alien ruins environment]</div>
+						<div class="screenshot">[UI mockup: Character inventory]</div>
+						<div class="screenshot">[UI mockup: Dialogue system]</div>
+						<div class="screenshot">[Concept art: Spacecraft design]</div>
+					</div>
+				</div>
+
+				<div class="section">
+					<h2 class="section-title">Behind the Scenes</h2>
+					<div class="video-container">[Video: Early gameplay prototype or development diary]</div>
+				</div>
+
+				<div class="section">
+					<p>
+						Follow our development journey through our <a href="/blog">blog posts</a> as we bring Project Nova to life.
+					</p>
+					<a href="/blog" class="cta-button">Read Development Blog</a>
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
