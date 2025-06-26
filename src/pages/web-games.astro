@@ -1,0 +1,604 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Web Games | ${SITE_TITLE}`} description="Play our collection of browser-based mini games" />
+		<style>
+			main {
+				width: 1200px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			.page-title {
+				margin-bottom: 0.5em;
+				text-align: center;
+			}
+			.page-subtitle {
+				margin-top: 0;
+				color: rgb(var(--gray));
+				font-weight: normal;
+				font-size: 1.2em;
+				margin-bottom: 3em;
+				text-align: center;
+			}
+			.games-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+				gap: 3em;
+				margin: 3em 0;
+			}
+			.game-card {
+				background-color: white;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease;
+			}
+			.game-card:hover {
+				transform: translateY(-5px);
+			}
+			.game-preview {
+				width: 100%;
+				height: 250px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				font-size: 1.2em;
+				position: relative;
+				overflow: hidden;
+			}
+			.game-content {
+				padding: 1.5em;
+			}
+			.game-title {
+				margin: 0 0 0.5em 0;
+				font-size: 1.4em;
+				color: rgb(var(--black));
+			}
+			.game-description {
+				margin: 0 0 1em 0;
+				color: rgb(var(--gray-dark));
+				line-height: 1.5;
+			}
+			.game-stats {
+				display: flex;
+				gap: 1em;
+				margin-bottom: 1em;
+				font-size: 0.9em;
+				color: rgb(var(--gray));
+			}
+			.play-button {
+				background-color: rgb(var(--accent));
+				color: white;
+				border: none;
+				padding: 0.8em 1.5em;
+				border-radius: 4px;
+				font-weight: bold;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+				width: 100%;
+			}
+			.play-button:hover {
+				background-color: rgb(var(--accent-dark, var(--accent)));
+			}
+			.game-container {
+				background-color: #f9f9f9;
+				border-radius: 12px;
+				padding: 2em;
+				margin: 2em 0;
+				text-align: center;
+			}
+			.game-canvas {
+				border: 2px solid #ddd;
+				border-radius: 8px;
+				background-color: white;
+				max-width: 100%;
+			}
+			.game-controls {
+				margin-top: 1em;
+				display: flex;
+				gap: 1em;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			.control-button {
+				background-color: rgb(var(--accent));
+				color: white;
+				border: none;
+				padding: 0.6em 1.2em;
+				border-radius: 4px;
+				cursor: pointer;
+				font-size: 0.9em;
+			}
+			.control-button:hover {
+				background-color: rgb(var(--accent-dark, var(--accent)));
+			}
+			.score-display {
+				font-size: 1.2em;
+				font-weight: bold;
+				margin: 1em 0;
+				color: rgb(var(--accent));
+			}
+			.hidden {
+				display: none;
+			}
+			
+			/* Snake Game Specific Styles */
+			.snake-game {
+				background: linear-gradient(135deg, #2E8B57 0%, #228B22 100%);
+			}
+			
+			/* Memory Game Specific Styles */
+			.memory-game {
+				background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+			}
+			
+			/* Puzzle Game Specific Styles */
+			.puzzle-game {
+				background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+			}
+			
+			.memory-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 10px;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+			
+			.memory-card {
+				width: 80px;
+				height: 80px;
+				background-color: #3498db;
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 2em;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+			
+			.memory-card.flipped {
+				background-color: #e74c3c;
+				transform: rotateY(180deg);
+			}
+			
+			.memory-card.matched {
+				background-color: #2ecc71;
+				opacity: 0.6;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title">Web Games Collection</h1>
+			<h2 class="page-subtitle">Experience our collection of browser-based mini games</h2>
+
+			<div class="games-grid">
+				<div class="game-card">
+					<div class="game-preview snake-game">
+						<div>🐍 Snake Game</div>
+					</div>
+					<div class="game-content">
+						<h3 class="game-title">Classic Snake</h3>
+						<p class="game-description">
+							Guide the snake to eat food and grow longer. Avoid hitting the walls or yourself!
+						</p>
+						<div class="game-stats">
+							<span>⏱️ Quick Game</span>
+							<span>🎯 High Score</span>
+							<span>⌨️ Arrow Keys</span>
+						</div>
+						<button class="play-button" onclick="showGame('snake-game')">Play Now</button>
+					</div>
+				</div>
+
+				<div class="game-card">
+					<div class="game-preview memory-game">
+						<div>🧠 Memory Challenge</div>
+					</div>
+					<div class="game-content">
+						<h3 class="game-title">Memory Match</h3>
+						<p class="game-description">
+							Test your memory by matching pairs of cards. Can you find all the pairs?
+						</p>
+						<div class="game-stats">
+							<span>🧠 Memory</span>
+							<span>🎯 Match Pairs</span>
+							<span>🖱️ Click to Play</span>
+						</div>
+						<button class="play-button" onclick="showGame('memory-game')">Play Now</button>
+					</div>
+				</div>
+
+				<div class="game-card">
+					<div class="game-preview puzzle-game">
+						<div>🧩 Number Puzzle</div>
+					</div>
+					<div class="game-content">
+						<h3 class="game-title">15 Puzzle</h3>
+						<p class="game-description">
+							Slide the numbered tiles to arrange them in order. A classic puzzle challenge!
+						</p>
+						<div class="game-stats">
+							<span>🧩 Logic</span>
+							<span>🎯 Solve Puzzle</span>
+							<span>🖱️ Click Tiles</span>
+						</div>
+						<button class="play-button" onclick="showGame('puzzle-game')">Play Now</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Snake Game -->
+			<div id="snake-game" class="game-container hidden">
+				<h3>Classic Snake Game</h3>
+				<div class="score-display">Score: <span id="snake-score">0</span></div>
+				<canvas id="snake-canvas" class="game-canvas" width="400" height="400"></canvas>
+				<div class="game-controls">
+					<button class="control-button" onclick="startSnakeGame()">Start Game</button>
+					<button class="control-button" onclick="hideGame()">Back to Games</button>
+				</div>
+				<p>Use arrow keys to control the snake</p>
+			</div>
+
+			<!-- Memory Game -->
+			<div id="memory-game" class="game-container hidden">
+				<h3>Memory Match Game</h3>
+				<div class="score-display">Moves: <span id="memory-moves">0</span> | Matches: <span id="memory-matches">0</span>/8</div>
+				<div id="memory-grid" class="memory-grid">
+					<!-- Cards will be generated by JavaScript -->
+				</div>
+				<div class="game-controls">
+					<button class="control-button" onclick="startMemoryGame()">New Game</button>
+					<button class="control-button" onclick="hideGame()">Back to Games</button>
+				</div>
+			</div>
+
+			<!-- 15 Puzzle Game -->
+			<div id="puzzle-game" class="game-container hidden">
+				<h3>15 Number Puzzle</h3>
+				<div class="score-display">Moves: <span id="puzzle-moves">0</span></div>
+				<canvas id="puzzle-canvas" class="game-canvas" width="320" height="320"></canvas>
+				<div class="game-controls">
+					<button class="control-button" onclick="startPuzzleGame()">Shuffle</button>
+					<button class="control-button" onclick="hideGame()">Back to Games</button>
+				</div>
+				<p>Click tiles adjacent to the empty space to move them</p>
+			</div>
+		</main>
+		<Footer />
+
+		<script>
+			// Game state management
+			function showGame(gameId) {
+				document.querySelectorAll('.game-container').forEach(container => {
+					container.classList.add('hidden');
+				});
+				document.getElementById(gameId).classList.remove('hidden');
+				document.getElementById(gameId).scrollIntoView({ behavior: 'smooth' });
+			}
+
+			function hideGame() {
+				document.querySelectorAll('.game-container').forEach(container => {
+					container.classList.add('hidden');
+				});
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+
+			// Snake Game
+			let snakeGame = {
+				canvas: null,
+				ctx: null,
+				snake: [{x: 200, y: 200}],
+				direction: {x: 0, y: 0},
+				food: {x: 0, y: 0},
+				score: 0,
+				gameRunning: false,
+				gameLoop: null
+			};
+
+			function startSnakeGame() {
+				snakeGame.canvas = document.getElementById('snake-canvas');
+				snakeGame.ctx = snakeGame.canvas.getContext('2d');
+				snakeGame.snake = [{x: 200, y: 200}];
+				snakeGame.direction = {x: 0, y: 0};
+				snakeGame.score = 0;
+				snakeGame.gameRunning = true;
+				
+				document.getElementById('snake-score').textContent = '0';
+				generateFood();
+				
+				if (snakeGame.gameLoop) clearInterval(snakeGame.gameLoop);
+				snakeGame.gameLoop = setInterval(updateSnake, 150);
+				
+				// Add keyboard controls
+				document.addEventListener('keydown', handleSnakeControls);
+			}
+
+			function handleSnakeControls(e) {
+				if (!snakeGame.gameRunning) return;
+				
+				switch(e.key) {
+					case 'ArrowUp':
+						if (snakeGame.direction.y === 0) snakeGame.direction = {x: 0, y: -20};
+						break;
+					case 'ArrowDown':
+						if (snakeGame.direction.y === 0) snakeGame.direction = {x: 0, y: 20};
+						break;
+					case 'ArrowLeft':
+						if (snakeGame.direction.x === 0) snakeGame.direction = {x: -20, y: 0};
+						break;
+					case 'ArrowRight':
+						if (snakeGame.direction.x === 0) snakeGame.direction = {x: 20, y: 0};
+						break;
+				}
+			}
+
+			function updateSnake() {
+				if (!snakeGame.gameRunning) return;
+				
+				const head = {
+					x: snakeGame.snake[0].x + snakeGame.direction.x,
+					y: snakeGame.snake[0].y + snakeGame.direction.y
+				};
+				
+				// Check wall collision
+				if (head.x < 0 || head.x >= 400 || head.y < 0 || head.y >= 400) {
+					gameOver();
+					return;
+				}
+				
+				// Check self collision
+				if (snakeGame.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+					gameOver();
+					return;
+				}
+				
+				snakeGame.snake.unshift(head);
+				
+				// Check food collision
+				if (head.x === snakeGame.food.x && head.y === snakeGame.food.y) {
+					snakeGame.score += 10;
+					document.getElementById('snake-score').textContent = snakeGame.score;
+					generateFood();
+				} else {
+					snakeGame.snake.pop();
+				}
+				
+				drawSnake();
+			}
+
+			function generateFood() {
+				snakeGame.food = {
+					x: Math.floor(Math.random() * 20) * 20,
+					y: Math.floor(Math.random() * 20) * 20
+				};
+			}
+
+			function drawSnake() {
+				snakeGame.ctx.clearRect(0, 0, 400, 400);
+				
+				// Draw snake
+				snakeGame.ctx.fillStyle = '#2ecc71';
+				snakeGame.snake.forEach(segment => {
+					snakeGame.ctx.fillRect(segment.x, segment.y, 18, 18);
+				});
+				
+				// Draw food
+				snakeGame.ctx.fillStyle = '#e74c3c';
+				snakeGame.ctx.fillRect(snakeGame.food.x, snakeGame.food.y, 18, 18);
+			}
+
+			function gameOver() {
+				snakeGame.gameRunning = false;
+				clearInterval(snakeGame.gameLoop);
+				alert(`Game Over! Your score: ${snakeGame.score}`);
+			}
+
+			// Memory Game
+			let memoryGame = {
+				cards: [],
+				flippedCards: [],
+				matchedPairs: 0,
+				moves: 0,
+				canFlip: true
+			};
+
+			function startMemoryGame() {
+				memoryGame.cards = [];
+				memoryGame.flippedCards = [];
+				memoryGame.matchedPairs = 0;
+				memoryGame.moves = 0;
+				memoryGame.canFlip = true;
+				
+				document.getElementById('memory-moves').textContent = '0';
+				document.getElementById('memory-matches').textContent = '0';
+				
+				// Create card pairs
+				const symbols = ['🎮', '🕹️', '🎯', '🎲', '🃏', '🎪', '🎭', '🎨'];
+				const cardData = [...symbols, ...symbols].sort(() => Math.random() - 0.5);
+				
+				const grid = document.getElementById('memory-grid');
+				grid.innerHTML = '';
+				
+				cardData.forEach((symbol, index) => {
+					const card = document.createElement('div');
+					card.className = 'memory-card';
+					card.dataset.symbol = symbol;
+					card.dataset.index = index;
+					card.addEventListener('click', flipCard);
+					grid.appendChild(card);
+				});
+			}
+
+			function flipCard(e) {
+				if (!memoryGame.canFlip) return;
+				
+				const card = e.target;
+				if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+				
+				card.classList.add('flipped');
+				card.textContent = card.dataset.symbol;
+				memoryGame.flippedCards.push(card);
+				
+				if (memoryGame.flippedCards.length === 2) {
+					memoryGame.moves++;
+					document.getElementById('memory-moves').textContent = memoryGame.moves;
+					memoryGame.canFlip = false;
+					
+					setTimeout(() => {
+						checkMemoryMatch();
+					}, 1000);
+				}
+			}
+
+			function checkMemoryMatch() {
+				const [card1, card2] = memoryGame.flippedCards;
+				
+				if (card1.dataset.symbol === card2.dataset.symbol) {
+					card1.classList.add('matched');
+					card2.classList.add('matched');
+					memoryGame.matchedPairs++;
+					document.getElementById('memory-matches').textContent = memoryGame.matchedPairs;
+					
+					if (memoryGame.matchedPairs === 8) {
+						setTimeout(() => {
+							alert(`Congratulations! You completed the game in ${memoryGame.moves} moves!`);
+						}, 500);
+					}
+				} else {
+					card1.classList.remove('flipped');
+					card2.classList.remove('flipped');
+					card1.textContent = '';
+					card2.textContent = '';
+				}
+				
+				memoryGame.flippedCards = [];
+				memoryGame.canFlip = true;
+			}
+
+			// 15 Puzzle Game
+			let puzzleGame = {
+				canvas: null,
+				ctx: null,
+				tiles: [...Array(15).keys()].map(i => i + 1).concat([0]),
+				emptyIndex: 15,
+				moves: 0,
+				tileSize: 80
+			};
+
+			function startPuzzleGame() {
+				puzzleGame.canvas = document.getElementById('puzzle-canvas');
+				puzzleGame.ctx = puzzleGame.canvas.getContext('2d');
+				puzzleGame.moves = 0;
+				document.getElementById('puzzle-moves').textContent = '0';
+				
+				// Shuffle tiles
+				for (let i = 0; i < 1000; i++) {
+					const possibleMoves = getPossibleMoves();
+					const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+					moveTile(randomMove, false);
+				}
+				
+				drawPuzzle();
+				puzzleGame.canvas.addEventListener('click', handlePuzzleClick);
+			}
+
+			function getPossibleMoves() {
+				const moves = [];
+				const emptyRow = Math.floor(puzzleGame.emptyIndex / 4);
+				const emptyCol = puzzleGame.emptyIndex % 4;
+				
+				if (emptyRow > 0) moves.push(puzzleGame.emptyIndex - 4); // Up
+				if (emptyRow < 3) moves.push(puzzleGame.emptyIndex + 4); // Down
+				if (emptyCol > 0) moves.push(puzzleGame.emptyIndex - 1); // Left
+				if (emptyCol < 3) moves.push(puzzleGame.emptyIndex + 1); // Right
+				
+				return moves;
+			}
+
+			function moveTile(index, countMove = true) {
+				const possibleMoves = getPossibleMoves();
+				if (!possibleMoves.includes(index)) return false;
+				
+				[puzzleGame.tiles[index], puzzleGame.tiles[puzzleGame.emptyIndex]] = 
+				[puzzleGame.tiles[puzzleGame.emptyIndex], puzzleGame.tiles[index]];
+				
+				puzzleGame.emptyIndex = index;
+				
+				if (countMove) {
+					puzzleGame.moves++;
+					document.getElementById('puzzle-moves').textContent = puzzleGame.moves;
+					
+					if (isPuzzleSolved()) {
+						setTimeout(() => {
+							alert(`Congratulations! You solved the puzzle in ${puzzleGame.moves} moves!`);
+						}, 500);
+					}
+				}
+				
+				return true;
+			}
+
+			function handlePuzzleClick(e) {
+				const rect = puzzleGame.canvas.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				
+				const col = Math.floor(x / puzzleGame.tileSize);
+				const row = Math.floor(y / puzzleGame.tileSize);
+				const index = row * 4 + col;
+				
+				if (moveTile(index)) {
+					drawPuzzle();
+				}
+			}
+
+			function drawPuzzle() {
+				puzzleGame.ctx.clearRect(0, 0, 320, 320);
+				
+				for (let i = 0; i < 16; i++) {
+					const row = Math.floor(i / 4);
+					const col = i % 4;
+					const x = col * puzzleGame.tileSize;
+					const y = row * puzzleGame.tileSize;
+					
+					if (puzzleGame.tiles[i] !== 0) {
+						// Draw tile
+						puzzleGame.ctx.fillStyle = '#3498db';
+						puzzleGame.ctx.fillRect(x, y, puzzleGame.tileSize - 2, puzzleGame.tileSize - 2);
+						
+						// Draw number
+						puzzleGame.ctx.fillStyle = 'white';
+						puzzleGame.ctx.font = '24px Arial';
+						puzzleGame.ctx.textAlign = 'center';
+						puzzleGame.ctx.fillText(
+							puzzleGame.tiles[i],
+							x + puzzleGame.tileSize / 2,
+							y + puzzleGame.tileSize / 2 + 8
+						);
+					}
+				}
+			}
+
+			function isPuzzleSolved() {
+				for (let i = 0; i < 15; i++) {
+					if (puzzleGame.tiles[i] !== i + 1) return false;
+				}
+				return puzzleGame.tiles[15] === 0;
+			}
+		</script>
+	</body>
+</html>

@@ -13,26 +13,316 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<Header />
 		<main>
-			<h1>🎮 Welcome to Sincloy Games</h1>
-			<p>
-				We are an independent game development studio dedicated to creating immersive and innovative gaming experiences.
-				Our passion lies in crafting unique worlds and memorable stories that push the boundaries of interactive entertainment.
-			</p>
-			<p>
-				While we're currently in the early stages of development, we're excited to share our journey with you.
-				Stay tuned for updates on our upcoming projects and behind-the-scenes looks at our creative process.
-			</p>
-			<p>What you can expect from us:</p>
-			<ul>
-				<li>Innovative game mechanics</li>
-				<li>Immersive storytelling</li>
-				<li>Unique art styles</li>
-				<li>Passionate development team</li>
-			</ul>
-			<p>
-				Follow our journey as we bring our vision to life. We can't wait to share our first game with the world!
-			</p>
+			<section class="hero">
+				<h1>🎮 Welcome to Sincloy Games</h1>
+				<p class="hero-subtitle">
+					Independent game development studio crafting immersive gaming experiences with innovative design and compelling narratives.
+				</p>
+			</section>
+
+			<section class="features">
+				<h2>Our Game Development Philosophy</h2>
+				<div class="feature-grid">
+					<div class="feature-card">
+						<h3>🎯 Player-Centered Design</h3>
+						<p>Every decision we make starts with the player experience. We create games that are intuitive, engaging, and rewarding.</p>
+					</div>
+					<div class="feature-card">
+						<h3>🎨 Artistic Innovation</h3>
+						<p>We push creative boundaries with unique art styles and visual storytelling that brings our game worlds to life.</p>
+					</div>
+					<div class="feature-card">
+						<h3>🔧 Technical Excellence</h3>
+						<p>Our games are built with clean, optimized code using modern development practices and cutting-edge tools.</p>
+					</div>
+					<div class="feature-card">
+						<h3>🌟 Community Focus</h3>
+						<p>We believe in building games with our community, incorporating player feedback throughout development.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="current-projects">
+				<h2>Current Projects</h2>
+				<div class="project-showcase">
+					<div class="project-card">
+						<h3>Project Nova</h3>
+						<p>A sci-fi RPG featuring dynamic narratives and player-driven storytelling. Currently in pre-production with a focus on innovative dialogue systems and branching storylines.</p>
+						<div class="project-status">
+							<span class="status-badge">In Development</span>
+							<span class="progress">25% Complete</span>
+						</div>
+						<a href="/games/project-nova" class="project-link">Learn More</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="interactive-content">
+				<h2>Try Our Web Games</h2>
+				<p>Experience our game design philosophy through our collection of browser-based mini-games. Each game showcases different aspects of our development approach.</p>
+				<div class="web-games-preview">
+					<div class="game-mini-card">
+						<span class="game-icon">🐍</span>
+						<span>Classic Snake</span>
+					</div>
+					<div class="game-mini-card">
+						<span class="game-icon">🧠</span>
+						<span>Memory Match</span>
+					</div>
+					<div class="game-mini-card">
+						<span class="game-icon">🧩</span>
+						<span>15 Puzzle</span>
+					</div>
+				</div>
+				<a href="/web-games" class="cta-button">Play Now</a>
+			</section>
+
+			<section class="development-insights">
+				<h2>Development Insights</h2>
+				<p>Follow our development journey through detailed blog posts covering game design, technical challenges, and industry insights.</p>
+				<div class="blog-preview">
+					<div class="blog-card">
+						<h4>独立游戏开发的挑战与机遇</h4>
+						<p>探讨独立开发团队如何将资源限制转化为创新动力...</p>
+					</div>
+					<div class="blog-card">
+						<h4>选择合适的游戏引擎：开发者指南</h4>
+						<p>深入分析主流游戏引擎的特点和选择策略...</p>
+					</div>
+					<div class="blog-card">
+						<h4>提升玩家参与度的设计策略</h4>
+						<p>如何通过游戏设计增强玩家参与度和长期留存...</p>
+					</div>
+				</div>
+				<a href="/blog" class="cta-button">Read Blog</a>
+			</section>
+
+			<section class="team-highlight">
+				<h2>Meet Our Team</h2>
+				<p>Sincloy Games is powered by a diverse team of experienced developers, artists, and designers who share a passion for creating exceptional gaming experiences.</p>
+				<div class="team-stats">
+					<div class="stat">
+						<span class="stat-number">12</span>
+						<span class="stat-label">Team Members</span>
+					</div>
+					<div class="stat">
+						<span class="stat-number">50+</span>
+						<span class="stat-label">Years Combined Experience</span>
+					</div>
+					<div class="stat">
+						<span class="stat-number">6</span>
+						<span class="stat-label">Disciplines</span>
+					</div>
+				</div>
+				<a href="/team" class="cta-button">Meet the Team</a>
+			</section>
 		</main>
+
+		<style>
+			main {
+				width: 1200px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			
+			.hero {
+				text-align: center;
+				margin-bottom: 4em;
+			}
+			
+			.hero h1 {
+				font-size: 2.5em;
+				margin-bottom: 0.5em;
+			}
+			
+			.hero-subtitle {
+				font-size: 1.3em;
+				color: rgb(var(--gray-dark));
+				max-width: 800px;
+				margin: 0 auto;
+				line-height: 1.6;
+			}
+			
+			section {
+				margin: 4em 0;
+			}
+			
+			section h2 {
+				text-align: center;
+				margin-bottom: 2em;
+				font-size: 2em;
+				color: rgb(var(--black));
+			}
+			
+			.feature-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2em;
+			}
+			
+			.feature-card {
+				background-color: #f9f9f9;
+				padding: 2em;
+				border-radius: 12px;
+				text-align: center;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			}
+			
+			.feature-card h3 {
+				margin-bottom: 1em;
+				font-size: 1.3em;
+				color: rgb(var(--accent));
+			}
+			
+			.project-showcase {
+				max-width: 800px;
+				margin: 0 auto;
+			}
+			
+			.project-card {
+				background-color: white;
+				border: 2px solid #eee;
+				border-radius: 12px;
+				padding: 2em;
+				text-align: center;
+			}
+			
+			.project-card h3 {
+				margin-bottom: 1em;
+				font-size: 1.5em;
+				color: rgb(var(--accent));
+			}
+			
+			.project-status {
+				margin: 1.5em 0;
+				display: flex;
+				justify-content: center;
+				gap: 1em;
+				flex-wrap: wrap;
+			}
+			
+			.status-badge {
+				background-color: rgb(var(--accent));
+				color: white;
+				padding: 0.5em 1em;
+				border-radius: 20px;
+				font-size: 0.9em;
+			}
+			
+			.progress {
+				background-color: #e0e0e0;
+				padding: 0.5em 1em;
+				border-radius: 20px;
+				font-size: 0.9em;
+			}
+			
+			.project-link {
+				display: inline-block;
+				background-color: rgb(var(--accent));
+				color: white;
+				padding: 0.8em 1.5em;
+				border-radius: 4px;
+				text-decoration: none;
+				font-weight: bold;
+				margin-top: 1em;
+			}
+			
+			.web-games-preview {
+				display: flex;
+				justify-content: center;
+				gap: 2em;
+				margin: 2em 0;
+				flex-wrap: wrap;
+			}
+			
+			.game-mini-card {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.5em;
+				padding: 1em;
+				background-color: #f9f9f9;
+				border-radius: 8px;
+				min-width: 120px;
+			}
+			
+			.game-icon {
+				font-size: 2em;
+			}
+			
+			.blog-preview {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2em;
+				margin: 2em 0;
+			}
+			
+			.blog-card {
+				background-color: white;
+				border: 1px solid #eee;
+				border-radius: 8px;
+				padding: 1.5em;
+			}
+			
+			.blog-card h4 {
+				margin-bottom: 0.5em;
+				color: rgb(var(--accent));
+			}
+			
+			.team-stats {
+				display: flex;
+				justify-content: center;
+				gap: 3em;
+				margin: 2em 0;
+				flex-wrap: wrap;
+			}
+			
+			.stat {
+				text-align: center;
+			}
+			
+			.stat-number {
+				display: block;
+				font-size: 2.5em;
+				font-weight: bold;
+				color: rgb(var(--accent));
+			}
+			
+			.stat-label {
+				font-size: 0.9em;
+				color: rgb(var(--gray));
+			}
+			
+			.cta-button {
+				display: inline-block;
+				background-color: rgb(var(--accent));
+				color: white;
+				padding: 1em 2em;
+				border-radius: 4px;
+				text-decoration: none;
+				font-weight: bold;
+				margin-top: 1em;
+			}
+			
+			.cta-button:hover {
+				background-color: rgb(var(--accent-dark, var(--accent)));
+			}
+			
+			@media (max-width: 768px) {
+				.hero h1 {
+					font-size: 2em;
+				}
+				
+				.team-stats {
+					gap: 2em;
+				}
+				
+				.web-games-preview {
+					gap: 1em;
+				}
+			}
+		</style>
 		<Footer />
 	</body>
 </html>
